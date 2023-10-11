@@ -15,12 +15,15 @@ A simple Java application to fetch and display weather information based on user
 ## Usage
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/0xSakib/WeatherForecast.git ```
+   ```
+   git clone https://github.com/0xSakib/WeatherForecast.git
+   ```
+
 2. Navigate to the project directory:
 
 ```
-cd WeatherForecast```
+cd WeatherForecast
+```
 
 3. Compile the Java source files:
 ```
@@ -29,18 +32,20 @@ javac -d bin src/*.java
 
 4. Create the runnable JAR:
 
-``` jar cmf Manifest.txt WeatherApp.jar -C bin . ```
+``` jar cmf Manifest.txt WeatherApp.jar -C bin .
+```
 
 5. Run the application:
 ```
-java -jar WeatherApp.jar```
+java -jar WeatherApp.jar
+```
 
 
 ## APIs Used
 OpenWeatherMap API for weather data.
 
 ## Credits
-Developed by 
+Developed by
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
