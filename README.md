@@ -15,9 +15,9 @@ A simple Java application to fetch and display weather information based on user
 ## Usage
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/0xSakib/WeatherForecast.git
-   ```
+```
+git clone https://github.com/0xSakib/WeatherForecast.git
+```
 
 2. Navigate to the project directory:
 
@@ -32,7 +32,8 @@ javac -d bin src/*.java
 
 4. Create the runnable JAR:
 
-``` jar cmf Manifest.txt WeatherApp.jar -C bin .
+```
+jar cmf Manifest.txt WeatherApp.jar -C bin .
 ```
 
 5. Run the application:
