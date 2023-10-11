@@ -55,7 +55,3 @@ java -cp ".;lib/java-json.jar;out/production/WeatherForcastApp" WeatherAppGUI
 
 ## License
 This project is licensed under the MIT License
-
----
-
-Feel free to use this in your project! Let me know if there's anything else you'd like to add or modify.
