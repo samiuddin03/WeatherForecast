@@ -1,52 +1,61 @@
 # Weather Forecast App
 
-A simple Java application to fetch and display weather information based on user input.
+This is a simple Weather Forecast application that provides weather information based on the city input provided by the user.
 
 ## Features
+* Retrieve and display weather information for a given city.
+* Display temperature, pressure, humidity, wind speed, visibility, and cloudiness.
 
-- Fetch and display basic weather information such as temperature, weather description, and humidity.
-- Allow users to input a city name to get the weather data for that location.
-- Utilize a weather API to retrieve current weather data.
-- Present the weather information in a clear and easily understandable format.
-- Handle cases where the user enters an invalid location or the API request fails.
-- Allow users to choose temperature units (e.g., Celsius, Fahrenheit).
-- Validate user input to ensure it is a valid location.
+## Prerequisites
+* Java Development Kit (JDK) installed
+* json-java library (java-json.jar) for handling JSON data. You can find it in the lib directory.
 
-## Usage
+## Installation
 
-1. Clone the repository:
+### For Linux
+
+1. Clone the repository to your local machine:
 ```
 git clone https://github.com/0xSakib/WeatherForecast.git
-```
-
-2. Navigate to the project directory:
-
-```
 cd WeatherForecast
 ```
-
-3. Compile the Java source files:
+2. Compile the Java source files using the following command:
 ```
-javac -d bin src/*.java
-```
-
-4. Create the runnable JAR:
-
-```
-jar cmf Manifest.txt WeatherApp.jar -C bin .
+javac -cp ".:lib/java-json.jar" -d out/production/WeatherForcastApp src/*.java
 ```
 
-5. Run the application:
+3. Run the application
 ```
-java -jar WeatherApp.jar
+java -cp ".:lib/java-json.jar:out/production/WeatherForcastApp" WeatherAppGUI
 ```
 
+### For Windows
 
-## APIs Used
-OpenWeatherMap API for weather data.
+1. Clone the repository to your local machine:
+```
+git clone https://github.com/0xSakib/WeatherForecast.git
+cd WeatherForecast
+```
+2. Compile the Java source files using the following command:
+```
+javac -cp ".;lib/java-json.jar" -d out\production\WeatherForcastApp src\*.java
+```
 
-## Credits
-Developed by
+3. Run the application
+```
+java -cp ".;lib/java-json.jar;out/production/WeatherForcastApp" WeatherAppGUI
+```
+
+## Usage
+1. Enter the name of the city for which you want to get weather information.
+2. Click on the "Fetch Weather" button.
+3. The application will display the weather information.
+
+## Contributors
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License
+
+---
+
+Feel free to use this in your project! Let me know if there's anything else you'd like to add or modify.
