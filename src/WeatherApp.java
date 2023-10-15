@@ -64,13 +64,13 @@ public class WeatherApp {
                 temperature = (temperature - 273.15) * 9 / 5 + 32;
             }
 
-            gui.setDescriptionLabel("Description: " + description);
-            gui.setTemperatureLabel("Temperature: " + String.format("%.2f %s", temperature, unit.name()));
-            gui.setPressureLabel("Pressure: " + String.format("%.2f hPa", pressure));
-            gui.setHumidityLabel("Humidity: " + humidity + "%");
-            gui.setWindLabel("Wind: " + String.format("%.2f m/s", windSpeed));
-            gui.setVisibilityLabel("Visibility: " + visibility + " meters");
-            gui.setCloudinessLabel("Cloudiness: " + cloudiness + "%");
+            gui.setDescriptionLabel(description);
+            gui.setTemperatureLabel(String.format("%.2f %s", temperature, unit.name()));
+            gui.setPressureLabel(String.format("%.2f hPa", pressure));
+            gui.setHumidityLabel(humidity + "%");
+            gui.setWindLabel(String.format("%.2f m/s", windSpeed));
+            gui.setVisibilityLabel(visibility + " meters");
+            gui.setCloudinessLabel(cloudiness + "%");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error parsing JSON response: " + e.getMessage());
         }
