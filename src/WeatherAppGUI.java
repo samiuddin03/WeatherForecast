@@ -6,15 +6,14 @@ import java.io.IOException;
 
 public class WeatherAppGUI extends JFrame implements ActionListener {
 
-    private JTextField cityTextField;
-    private JButton fetchButton;
-    private JLabel descriptionLabel;
-    private JLabel temperatureLabel;
-    private JLabel pressureLabel;
-    private JLabel humidityLabel;
-    private JLabel windLabel;
-    private JLabel visibilityLabel;
-    private JLabel cloudinessLabel;
+    private final JTextField cityTextField;
+    private final JLabel descriptionLabel;
+    private final JLabel temperatureLabel;
+    private final JLabel pressureLabel;
+    private final JLabel humidityLabel;
+    private final JLabel windLabel;
+    private final JLabel visibilityLabel;
+    private final JLabel cloudinessLabel;
 
     public WeatherAppGUI() {
         setTitle("Weather Forecast App");
@@ -29,7 +28,7 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
         cityTextField = new JTextField();
         panel.add(cityTextField);
 
-        fetchButton = new JButton("Fetch Weather");
+        JButton fetchButton = new JButton("Fetch Weather");
         fetchButton.addActionListener(this);
         panel.add(fetchButton);
         panel.add(new JLabel());
@@ -106,16 +105,16 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            WeatherAppGUI gui = new WeatherAppGUI();
-            gui.setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            try {
+//                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//            WeatherAppGUI gui = new WeatherAppGUI();
+//            gui.setVisible(true);
+//        });
+//    }
 }
