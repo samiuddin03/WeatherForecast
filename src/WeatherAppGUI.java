@@ -16,6 +16,7 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
     private final JLabel cloudinessLabel;
 
     public WeatherAppGUI() {
+
         setTitle("Weather Forecast App");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +26,7 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
         panel.setLayout(new GridLayout(9, 2));
 
         panel.add(new JLabel("Enter the city name: "));
-        cityTextField = new JTextField();
+        cityTextField = new JTextField(Main.loc);
         panel.add(cityTextField);
 
         JButton fetchButton = new JButton("Fetch Weather");
@@ -62,6 +63,19 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
         panel.add(cloudinessLabel);
 
         add(panel);
+
+
+        String cityName = cityTextField.getText();
+        String apiUrl = WeatherApp.buildApiUrl(cityName);
+
+        try {
+            String jsonResponse = WeatherApp.sendHttpRequest(apiUrl);
+            WeatherApp.displayWeatherInformation(cityName, jsonResponse, this, WeatherApp.TemperatureUnit.CELSIUS);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error: Unable to fetch weather data.");
+        }
+
+
     }
 
     public void setDescriptionLabel(String description) {
