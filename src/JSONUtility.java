@@ -16,17 +16,11 @@ public class JSONUtility {
         return "N/A";
     }
 
-    public static double getTemperature(String jsonResponse, WeatherApp.TemperatureUnit unit) {
+    public static double getTemperature(String jsonResponse) {
         try {
             JSONObject jsonObject = new JSONObject(jsonResponse);
             JSONObject main = jsonObject.getJSONObject("main");
             double temperature = main.getDouble("temp");
-
-            if (unit == WeatherApp.TemperatureUnit.CELSIUS) {
-                temperature = temperature - 273.15; // Kelvin to Celsius
-            } else if (unit == WeatherApp.TemperatureUnit.FAHRENHEIT) {
-                temperature = (temperature - 273.15) * 9 / 5 + 32; // Kelvin to Fahrenheit
-            }
 
             return temperature;
         } catch (Exception e) {

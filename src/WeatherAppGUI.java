@@ -5,8 +5,12 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class WeatherAppGUI extends JFrame implements ActionListener {
+    static String tempUnit;
 
     private final JTextField cityTextField;
+    JButton fetchButton;
+    static JRadioButton changeUnit;
+
     private final JLabel descriptionLabel;
     private final JLabel temperatureLabel;
     private final JLabel pressureLabel;
@@ -14,6 +18,8 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
     private final JLabel windLabel;
     private final JLabel visibilityLabel;
     private final JLabel cloudinessLabel;
+
+
 
     public WeatherAppGUI() {
 
@@ -29,10 +35,16 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
         cityTextField = new JTextField(Main.loc);
         panel.add(cityTextField);
 
-        JButton fetchButton = new JButton("Fetch Weather");
+        this.fetchButton = new JButton("Fetch Weather");
         fetchButton.addActionListener(this);
         panel.add(fetchButton);
-        panel.add(new JLabel());
+
+        this.changeUnit = new JRadioButton("Show Fahrenheit");
+        changeUnit.addActionListener(this);
+        panel.add(changeUnit);
+        //panel.add(new JLabel());
+
+
 
         panel.add(new JLabel("Description: "));
         descriptionLabel = new JLabel();
@@ -70,7 +82,7 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
 
         try {
             String jsonResponse = WeatherApp.sendHttpRequest(apiUrl);
-            WeatherApp.displayWeatherInformation(cityName, jsonResponse, this, WeatherApp.TemperatureUnit.CELSIUS);
+            WeatherApp.displayWeatherInformation(cityName, jsonResponse, this);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error: Unable to fetch weather data.");
         }
@@ -108,16 +120,22 @@ public class WeatherAppGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String cityName = cityTextField.getText();
-        String apiUrl = WeatherApp.buildApiUrl(cityName);
+        if (e.getSource() == fetchButton) {
+            String cityName = cityTextField.getText();
+            String apiUrl = WeatherApp.buildApiUrl(cityName);
 
-        try {
-            String jsonResponse = WeatherApp.sendHttpRequest(apiUrl);
-            WeatherApp.displayWeatherInformation(cityName, jsonResponse, this, WeatherApp.TemperatureUnit.CELSIUS);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error: Unable to fetch weather data.");
+            try {
+                String jsonResponse = WeatherApp.sendHttpRequest(apiUrl);
+                WeatherApp.displayWeatherInformation(cityName, jsonResponse, this);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error: Unable to fetch weather data.");
+            }
+        } else if (e.getSource() == changeUnit) {
         }
+
     }
+
+
 
 //    public static void main(String[] args) {
 //        SwingUtilities.invokeLater(() -> {

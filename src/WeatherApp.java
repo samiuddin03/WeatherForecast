@@ -10,10 +10,6 @@ import java.net.URL;
 
 public class WeatherApp {
 
-    public enum TemperatureUnit {
-        CELSIUS,
-        FAHRENHEIT
-    }
 
     public static String buildApiUrl(String cityName) {
         String apiKey = "977e5ddbe652f3a3131e9e61a0ce4d24";
@@ -37,7 +33,7 @@ public class WeatherApp {
         return response.toString();
     }
 
-    public static void displayWeatherInformation(String cityName, String jsonResponse, WeatherAppGUI gui, TemperatureUnit unit) {
+    public static void displayWeatherInformation(String cityName, String jsonResponse, WeatherAppGUI gui) {
         try {
             JSONObject jsonObject = new JSONObject(jsonResponse);
             JSONArray weatherArray = jsonObject.getJSONArray("weather");
@@ -58,14 +54,18 @@ public class WeatherApp {
             JSONObject clouds = jsonObject.getJSONObject("clouds");
             int cloudiness = clouds.getInt("all");
 
-            if (unit == TemperatureUnit.CELSIUS) {
-                temperature -= 273.15;
-            } else if (unit == TemperatureUnit.FAHRENHEIT) {
+            if(WeatherAppGUI.changeUnit.isSelected()){
                 temperature = (temperature - 273.15) * 9 / 5 + 32;
+                WeatherAppGUI.tempUnit = "Fahrenheit";
+            }
+            else {
+                temperature -= 273.15;
+                WeatherAppGUI.tempUnit = "Celsius";
             }
 
+
             gui.setDescriptionLabel(description);
-            gui.setTemperatureLabel(String.format("%.2f %s", temperature, unit.name()));
+            gui.setTemperatureLabel(String.format("%.2f %s", temperature, WeatherAppGUI.tempUnit));
             gui.setPressureLabel(String.format("%.2f hPa", pressure));
             gui.setHumidityLabel(humidity + "%");
             gui.setWindLabel(String.format("%.2f m/s", windSpeed));
@@ -76,16 +76,5 @@ public class WeatherApp {
         }
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            try {
-//                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//            WeatherAppGUI gui = new WeatherAppGUI();
-//            gui.setVisible(true);
-//        });
-//    }
+
 }
